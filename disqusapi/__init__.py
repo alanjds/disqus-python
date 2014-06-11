@@ -162,8 +162,8 @@ class DisqusAPI(Resource):
     def __init__(self, secret_key=None, public_key=None, format='json', version='3.0', **kwargs):
         self.secret_key = secret_key
         self.public_key = public_key
-        if not public_key:
-            warnings.warn('You should pass ``public_key`` in addition to your secret key.')
+        if secret_key and public_key:
+            warnings.warn('Disqus ignores the ``secret_key`` if ``public_key`` is provided. Please provide only the secret key.')
         self.format = format
         self.version = version
         super(DisqusAPI, self).__init__(self)
